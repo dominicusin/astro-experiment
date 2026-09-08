@@ -8,7 +8,6 @@ export default defineConfig({
   base: '/astro-experiment',
   trailingSlash: 'always',
   output: 'static',
-  outDir: '../dominicusin.github.io/public/astro-experiment',
   markdown: {
     syntaxHighlight: 'shiki',
   },
