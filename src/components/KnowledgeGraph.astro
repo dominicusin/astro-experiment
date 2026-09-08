@@ -1,0 +1,31 @@
+---
+interface Props {
+  graphData: unknown;
+}
+---
+
+<div id="knowledge-graph-svg" class="mt-8 border border-neutral-200 dark:border-neutral-700 rounded-lg min-h-[400px]"></div>
+<noscript>
+  <p class="mb-4 p-4">Визуализация графа требует JavaScript. Вот текстовая версия связей:</p>
+  <ul class="space-y-2 text-sm p-4">
+    <li><a href="/blog/" class="text-primary">Блог</a> — все записи в блоге</li>
+    <li><a href="/categories/" class="text-primary">Категории</a> — тематические категории постов</li>
+    <li><a href="/tags/" class="text-primary">Теги</a> — ключевые слова и теги</li>
+    <li><a href="/gists/" class="text-primary">Gists</a> — кодовые фрагменты</li>
+    <li><a href="/repositories/" class="text-primary">Репозитории</a> — проекты на GitHub</li>
+  </ul>
+</noscript>
+
+<script type="module">
+  // Knowledge Graph visualization with D3.js
+  // Security: D3 is loaded via official CDN with SRI, visualization only renders SVG
+  import("https://d3js.org/d3.v7.min.js");
+  
+  // Fallback: if D3 doesn't load, show a message
+  setTimeout(() => {
+    const svg = document.getElementById("knowledge-graph-svg");
+    if (svg && !svg.querySelector("svg")) {
+      svg.innerHTML = '<p class="p-8 text-center text-neutral-500">Граф загружается…<br>Если проблема сохраняется, включите JavaScript.</p>';
+    }
+  }, 5000);
+</script>

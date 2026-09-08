@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Страница не найдена">
+  <div class="flex flex-col items-center justify-center min-h-[400px] text-center">
+    <div class="text-8xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">404</div>
+    <h1 class="text-3xl font-bold mb-4 text-neutral-900 dark:text-neutral-100">Страница не найдена</h1>
+    <p class="text-neutral-600 dark:text-neutral-400 mb-8 max-w-md">
+      Возможно, страница была переименована или удалена.
+      Проверьте адрес или вернитесь на главную.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <a href="/" class="btn btn-primary">На главную</a>
+      <a href="/blog/" class="btn btn-ghost">В блог</a>
+    </div>
+  </div>
+</Layout>

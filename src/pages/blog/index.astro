@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title="Блог" description="Инженерные статьи о системах и данных">
+  <div class="py-12">
+    <h1 class="text-4xl font-bold mb-2">Блог</h1>
+    <p class="text-neutral-600 dark:text-neutral-400 mb-8">
+      Инженерия, системное администрирование, DevOps, безопасность и наука о данных.
+    </p>
+
+    <div class="space-y-8">
+      {posts.map((post) => (
+        <article class="border-b pb-6">
+          <a href={`/${post.slug}/`} class="group block">
+            <h2 class="text-2xl font-bold group-hover:text-primary transition-colors">
+              {post.data.title}
+            </h2>
+            <time class="text-sm text-neutral-500 dark:text-neutral-400 mt-2 block">
+              {post.data.date.toLocaleDateString('ru-RU', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+            {post.data.description && (
+              <p class="text-neutral-600 dark:text-neutral-300 mt-2">
+                {post.data.description}
+              </p>
+            )}
+            {post.data.tags && post.data.tags.length > 0 && (
+              <div class="flex gap-2 mt-3 flex-wrap">
+                {post.data.tags.map((tag) => (
+                  <span class="tag">#{tag}</span>
+                ))}
+              </div>
+            )}
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>

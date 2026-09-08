@@ -1,0 +1,17 @@
+---
+interface Props {
+  type: string;
+  name: string;
+  description: string;
+}
+---
+
+<script type="application/ld+json" client:idle>
+  {
+    "@context": "https://schema.org",
+    "@type": {Astro.props.type},
+    "name": {JSON.stringify(Astro.props.name)},
+    "description": {JSON.stringify(Astro.props.description)},
+    "url": {JSON.stringify(Astro.url.href)}
+  }
+</script>

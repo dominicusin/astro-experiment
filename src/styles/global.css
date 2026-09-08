@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto !important;
+    }
+  }
+  body {
+    @apply font-sans text-neutral-900 bg-white;
+  }
+  [data-theme="dark"] {
+    @apply text-neutral-100 bg-neutral-900;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-1 rounded-md font-medium cursor-pointer transition-colors;
+  }
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-hover;
+  }
+  .btn-ghost {
+    @apply border border-neutral-300 hover:bg-neutral-100;
+  }
+  .hero {
+    @apply py-16 text-center;
+  }
+  .hero h1 {
+    @apply font-heading text-4xl md:text-5xl font-bold mb-4;
+  }
+  .hero p {
+    @apply text-neutral-600 max-w-2xl mx-auto mb-6;
+  }
+  .post-meta {
+    @apply text-sm text-neutral-500 flex items-center gap-2;
+  }
+  .tag {
+    @apply inline-block px-2.5 py-0.5 text-xs font-medium bg-neutral-100 text-neutral-600 rounded-full;
+  }
+  .post-nav {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4 mt-12 pt-6 border-t;
+  }
+  .post-nav-link {
+    @apply flex flex-col gap-1 p-4 bg-neutral-50 rounded-lg;
+  }
+  .post-nav-label {
+    @apply text-xs text-neutral-500;
+  }
+  .post-nav-title {
+    @apply font-medium text-neutral-800;
+  }
+  .site-header {
+    @apply sticky top-0 z-50 bg-white/95 border-b;
+  }
+  .container {
+    @apply max-w-3xl mx-auto px-4 py-0;
+  }
+  .scroll-top {
+    @apply fixed bottom-6 right-6 w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center cursor-pointer opacity-0 invisible transition-all;
+  }
+  .scroll-top.visible {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .skip-link {
+    @apply sr-only focus:not-sr-only absolute top-4 left-4 bg-neutral-900 text-white px-4 py-2 rounded z-50;
+  }
+}

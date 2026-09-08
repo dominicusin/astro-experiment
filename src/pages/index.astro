@@ -1,17 +1,39 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Dominicus In" description="Инженерный блог о системах и данных">
+  <div class="hero">
+    <h1>Инженерный блог<br />о системах и данных</h1>
+    <p>Промышленная инженерия, системная инженерия и наука о данных.</p>
+    <div class="hero-cta flex gap-4 justify-center">
+      <a href="/blog/" class="btn btn-primary">Перейти в блог</a>
+      <a href="/knowledge-graph/" class="btn btn-ghost">Knowledge Graph</a>
+    </div>
+  </div>
+
+  <!-- Latest posts preview -->
+  <section class="mt-16">
+    <h2 class="text-2xl font-bold mb-6">Последние записи</h2>
+    <div class="space-y-6">
+      {posts.slice(0, 5).map((post) => (
+        <a href={`/blog/${post.slug}/`} class="block group">
+          <h3 class="text-xl font-medium group-hover:text-primary transition-colors">
+            {post.data.title}
+          </h3>
+          <time class="text-sm text-neutral-500 dark:text-neutral-400">
+            {post.data.date.toLocaleDateString('ru-RU', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

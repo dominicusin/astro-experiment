@@ -1,5 +1,8 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "types": ["astro/client"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro"]
 }
